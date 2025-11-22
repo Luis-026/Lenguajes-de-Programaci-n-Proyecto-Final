@@ -13,9 +13,11 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Obtener la ruta absoluta del directorio del proyecto
         String projectPath = System.getProperty("user.dir");
         String fullUploadPath = "file:" + projectPath + "/" + uploadDir + "/";
 
+        // Configurar para servir las imágenes desde la URL /uploads/**
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations(fullUploadPath);
     }

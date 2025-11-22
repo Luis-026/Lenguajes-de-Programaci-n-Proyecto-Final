@@ -8,8 +8,10 @@
 <body>
 <div class="container mt-5">
     <h3 class="mb-4">Asignar Permisos al Rol: <span th:text="${rol.nombre}"></span></h3>
+
     <form method="post" th:action="@{/roles/permisos/guardar}">
         <input type="hidden" name="rolId" th:value="${rol.id}"/>
+
         <div class="mb-3">
             <label class="form-label">Seleccione los módulos que este rol puede acceder:</label>
             <div class="form-check" th:each="mod : ${modulos}">
@@ -21,6 +23,7 @@
                 <label class="form-check-label" th:for="${mod}" th:text="${mod}"></label>
             </div>
         </div>
+
         <button type="submit" class="btn btn-primary">Guardar Permisos</button>
         <a href="/roles" class="btn btn-secondary">Cancelar</a>
     </form>

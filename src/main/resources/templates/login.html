@@ -13,6 +13,7 @@
             min-height: 100vh;
             position: relative;
         }
+
         .login-container {
             max-width: 400px;
             margin-top: 100px;
@@ -23,17 +24,21 @@
             border: 2px solid #1e3a5f;
             position: relative;
         }
+
+        /* Logo/Header de la empresa */
         .brand-header {
             text-align: center;
             margin-bottom: 25px;
             border-bottom: 2px solid #1e3a5f;
             padding-bottom: 15px;
         }
+
         .brand-logo {
             font-size: 3rem;
             color: #1e3a5f;
             margin-bottom: 10px;
         }
+
         .brand-title {
             color: #1e3a5f;
             font-weight: bold;
@@ -42,11 +47,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .brand-subtitle {
             color: #2c5f7a;
             font-size: 0.9rem;
             margin: 5px 0 0 0;
         }
+
+        /* Mejoras en los inputs */
         .form-label {
             color: #1e3a5f;
             font-weight: 600;
@@ -54,9 +62,11 @@
             align-items: center;
             gap: 8px;
         }
+
         .form-label i {
             color: #2c5f7a;
         }
+
         .form-control {
             border: 2px solid #2c5f7a;
             border-radius: 8px;
@@ -64,10 +74,13 @@
             background: white;
             transition: all 0.3s ease;
         }
+
         .form-control:focus {
             border-color: #1e3a5f;
             box-shadow: 0 0 0 0.2rem rgba(30, 58, 95, 0.25);
         }
+
+        /* Botón mejorado */
         .btn-primary {
             background: linear-gradient(45deg, #1e3a5f, #2c5f7a);
             border: none;
@@ -79,27 +92,35 @@
             color: white;
             transition: all 0.3s ease;
         }
+
         .btn-primary:hover {
             background: linear-gradient(45deg, #2c5f7a, #1e3a5f);
             box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
         }
+
+        /* Decoraciones temáticas */
         .moto-decoration {
             position: absolute;
             font-size: 1.5rem;
             color: rgba(30, 58, 95, 0.1);
         }
+
         .moto-decoration:nth-child(1) {
             top: 10px;
             right: 15px;
         }
+
         .moto-decoration:nth-child(2) {
             bottom: 10px;
             left: 15px;
         }
+
         .moto-decoration:nth-child(3) {
             top: 50%;
             right: -10px;
         }
+
+        /* Mensaje de error mejorado */
         .text-danger {
             background: rgba(220, 53, 69, 0.1);
             border: 1px solid rgba(220, 53, 69, 0.3);
@@ -107,6 +128,8 @@
             padding: 10px;
             margin-top: 15px;
         }
+
+        /* Footer con información de la empresa */
         .login-footer {
             text-align: center;
             margin-top: 20px;
@@ -115,10 +138,12 @@
             font-size: 0.85rem;
             color: #1e3a5f;
         }
+
         .login-footer i {
             color: #2c5f7a;
             margin: 0 5px;
         }
+
         h3 {
             color: #1e3a5f;
         }
@@ -137,6 +162,7 @@
         <div class="moto-decoration">
             <i class="fas fa-cog"></i>
         </div>
+
         <!-- Header de marca -->
         <div class="brand-header">
             <div class="brand-logo">
@@ -146,6 +172,7 @@
             <p class="brand-subtitle">Proyecto de Herramientas de Desarrollo</p>
             <p class="brand-subtitle">Repuestos y Accesorios</p>
         </div>
+
         <h3 class="text-center mb-4">Iniciar Sesión</h3>
         <form method="post" th:action="@{/login}">
             <div class="mb-3">
@@ -173,6 +200,7 @@
             <i class="fas fa-exclamation-triangle me-2"></i>
             <p th:text="${error}"></p>
         </div>
+
         <!-- Footer informativo -->
         <div class="login-footer">
             <p>

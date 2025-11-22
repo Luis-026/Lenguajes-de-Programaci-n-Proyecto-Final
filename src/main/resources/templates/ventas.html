@@ -20,17 +20,20 @@
             --green: #10b981;
             --red: #ef4444;
         }
+
         body {
             background-color: var(--light-cream);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--dark-text);
             line-height: 1.5;
         }
+
         .container {
             max-width: 900px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
+
         .main-card {
             background: var(--white);
             border-radius: 12px;
@@ -38,11 +41,13 @@
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
+
         .card-header {
             background: var(--cream);
             padding: 1.5rem 2rem;
             border-bottom: 1px solid var(--border-color);
         }
+
         .page-title {
             font-size: 1.5rem;
             font-weight: 600;
@@ -52,9 +57,11 @@
             align-items: center;
             gap: 0.5rem;
         }
+
         .card-body {
             padding: 2rem;
         }
+
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -64,6 +71,7 @@
             align-items: center;
             gap: 0.5rem;
         }
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr auto auto;
@@ -75,16 +83,19 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
+
         .form-label {
             font-weight: 500;
             color: var(--gray-text);
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
         }
+
         .form-control, .form-select {
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-color);
@@ -94,11 +105,13 @@
             color: var(--dark-text);
             transition: border-color 0.2s ease;
         }
+
         .form-control:focus, .form-select:focus {
             outline: none;
             border-color: var(--primary-blue);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
+
         .btn-add {
             background: var(--yellow);
             color: var(--dark-text);
@@ -112,17 +125,21 @@
             align-items: center;
             gap: 0.5rem;
         }
+
         .btn-add:hover {
             background: #f59e0b;
         }
+
         .products-section {
             margin-top: 2rem;
         }
+
         .products-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 2rem;
         }
+
         .products-table th {
             background: var(--light-gray);
             padding: 1rem;
@@ -132,14 +149,17 @@
             border-bottom: 1px solid var(--border-color);
             font-size: 0.9rem;
         }
+
         .products-table td {
             padding: 1rem;
             border-bottom: 1px solid var(--border-color);
             color: var(--dark-text);
         }
+
         .products-table tr:hover {
             background: var(--light-cream);
         }
+
         .btn-remove {
             background: var(--yellow);
             color: var(--dark-text);
@@ -150,24 +170,29 @@
             font-weight: 500;
             cursor: pointer;
         }
+
         .btn-remove:hover {
             background: #f59e0b;
         }
+
         .total-section {
             text-align: right;
             margin-bottom: 2rem;
         }
+
         .total-amount {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--dark-text);
             margin-bottom: 1.5rem;
         }
+
         .action-buttons {
             display: flex;
             gap: 1rem;
             justify-content: flex-end;
         }
+
         .btn-clear {
             background: var(--red);
             color: var(--white);
@@ -177,9 +202,11 @@
             font-weight: 500;
             cursor: pointer;
         }
+
         .btn-clear:hover {
             background: #dc2626;
         }
+
         .btn-process {
             background: var(--green);
             color: var(--white);
@@ -192,9 +219,11 @@
             align-items: center;
             gap: 0.5rem;
         }
+
         .btn-process:hover {
             background: #059669;
         }
+
         .btn-back {
             background: var(--light-blue);
             color: var(--primary-blue);
@@ -208,45 +237,56 @@
             gap: 0.5rem;
             margin-right: auto;
         }
+
         .btn-back:hover {
             background: #bfdbfe;
             text-decoration: none;
             color: var(--primary-blue);
         }
+
         .empty-cart {
             text-align: center;
             padding: 3rem 2rem;
             color: var(--gray-text);
         }
+
         .empty-cart i {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: var(--border-color);
         }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
             .products-table {
                 font-size: 0.85rem;
             }
+
             .products-table th,
             .products-table td {
                 padding: 0.75rem 0.5rem;
             }
+
             .action-buttons {
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .btn-back {
                 margin-right: 0;
                 margin-bottom: 1rem;
             }
         }
+
         .product-item {
             display: none;
         }
+
         .cart-item {
             background: var(--white);
         }
@@ -261,11 +301,13 @@
                 Simular Venta
             </h1>
         </div>
+
         <div class="card-body">
             <div class="section-title">
                 <i class="fas fa-plus-circle"></i>
                 Añadir Producto a la Venta
             </div>
+
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">Buscar y seleccionar un producto...</label>
@@ -278,20 +320,24 @@
                                 th:data-stock="${p.stock}"></option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label class="form-label">Cantidad</label>
                     <input type="number" class="form-control" id="cantidadInput" value="1" min="1" style="width: 80px;">
                 </div>
+
                 <button type="button" class="btn-add" onclick="agregarAlCarrito()">
                     <i class="fas fa-plus"></i>
                     Añadir al Carrito
                 </button>
             </div>
+
             <div class="products-section">
                 <div class="section-title">
                     <i class="fas fa-shopping-basket"></i>
                     Productos en el Carrito:
                 </div>
+
                 <div id="cartContainer">
                     <div class="empty-cart">
                         <i class="fas fa-shopping-cart"></i>
@@ -299,6 +345,7 @@
                         <p>Añade productos para comenzar una venta</p>
                     </div>
                 </div>
+
                 <table class="products-table" id="cartTable" style="display: none;">
                     <thead>
                     <tr>
@@ -312,10 +359,12 @@
                     <tbody id="cartItems">
                     </tbody>
                 </table>
+
                 <div class="total-section" id="totalSection" style="display: none;">
                     <div class="total-amount">
                         Total Venta: $<span id="totalAmount">0.00</span>
                     </div>
+
                     <div class="action-buttons">
                         <a href="/principal" class="btn-back">
                             <i class="fas fa-arrow-left"></i>
@@ -335,31 +384,41 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     let carrito = [];
     let contadorId = 1;
+
     function agregarAlCarrito() {
         const select = document.getElementById('productoSelect');
         const cantidad = parseInt(document.getElementById('cantidadInput').value);
+
         if (!select.value) {
             alert('Por favor selecciona un producto');
             return;
         }
+
         if (!cantidad || cantidad < 1) {
             alert('Por favor ingresa una cantidad válida');
             return;
         }
+
         const option = select.options[select.selectedIndex];
         const productoId = select.value;
         const nombreProducto = option.text;
         const precio = parseFloat(option.dataset.precio);
         const stock = parseInt(option.dataset.stock);
+
+        // Verificar stock
         if (cantidad > stock) {
             alert(`Stock insuficiente. Disponible: ${stock} unidades`);
             return;
         }
+
+        // Verificar si el producto ya está en el carrito
         const productoExistente = carrito.find(item => item.productoId === productoId);
+
         if (productoExistente) {
             const nuevaCantidad = productoExistente.cantidad + cantidad;
             if (nuevaCantidad > stock) {
@@ -378,30 +437,41 @@
                 subtotal: cantidad * precio
             });
         }
+
         actualizarCarrito();
+
+        // Limpiar formulario
         select.value = '';
         document.getElementById('cantidadInput').value = 1;
     }
+
     function removerDelCarrito(id) {
         carrito = carrito.filter(item => item.id !== id);
         actualizarCarrito();
     }
+
     function actualizarCarrito() {
         const cartContainer = document.getElementById('cartContainer');
         const cartTable = document.getElementById('cartTable');
         const cartItems = document.getElementById('cartItems');
         const totalSection = document.getElementById('totalSection');
         const totalAmount = document.getElementById('totalAmount');
+
         if (carrito.length === 0) {
             cartContainer.style.display = 'block';
             cartTable.style.display = 'none';
             totalSection.style.display = 'none';
             return;
         }
+
         cartContainer.style.display = 'none';
         cartTable.style.display = 'table';
         totalSection.style.display = 'block';
+
+        // Limpiar tabla
         cartItems.innerHTML = '';
+
+        // Agregar items
         let total = 0;
         carrito.forEach(item => {
             const row = document.createElement('tr');
@@ -419,8 +489,10 @@
             cartItems.appendChild(row);
             total += item.subtotal;
         });
+
         totalAmount.textContent = total.toFixed(2);
     }
+
     function limpiarCarrito() {
         if (carrito.length === 0) return;
 
@@ -429,33 +501,43 @@
             actualizarCarrito();
         }
     }
+
     function realizarVenta() {
         if (carrito.length === 0) {
             alert('El carrito está vacío');
             return;
         }
+
         const total = carrito.reduce((sum, item) => sum + item.subtotal, 0);
         const resumen = carrito.map(item =>
             `${item.nombre} (${item.cantidad} x $${item.precio.toFixed(2)})`
         ).join('\n');
+
         const confirmacion = confirm(
             `¿Confirmar venta?\n\n${resumen}\n\nTotal: $${total.toFixed(2)}`
         );
+
         if (confirmacion) {
+            // Procesar cada item del carrito
             let ventasCompletas = 0;
+
             carrito.forEach(item => {
+                // Crear formulario para cada venta
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '/ventas/realizar';
                 form.style.display = 'none';
+
                 const inputProducto = document.createElement('input');
                 inputProducto.name = 'productoId';
                 inputProducto.value = item.productoId;
                 form.appendChild(inputProducto);
+
                 const inputCantidad = document.createElement('input');
                 inputCantidad.name = 'cantidad';
                 inputCantidad.value = item.cantidad;
                 form.appendChild(inputCantidad);
+
                 document.body.appendChild(form);
                 form.submit();
             });
