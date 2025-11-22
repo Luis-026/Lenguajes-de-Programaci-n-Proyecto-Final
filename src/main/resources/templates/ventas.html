@@ -2,86 +2,84 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Ventas</title>
+    <title>Sistema de Ventas - Panadería</title>
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #2563eb;
-            --light-blue: #dbeafe;
-            --cream: #fef7ed;
-            --light-cream: #fffbf5;
-            --dark-text: #1f2937;
-            --gray-text: #6b7280;
-            --light-gray: #f9fafb;
-            --border-color: #e5e7eb;
-            --white: #ffffff;
-            --yellow: #fbbf24;
-            --green: #10b981;
-            --red: #ef4444;
-        }
 
+    <style>
         body {
-            background-color: var(--light-cream);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--dark-text);
+            background: linear-gradient(135deg, #ffe5d9 0%, #fff1e6 40%, #fde2e4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2937;
             line-height: 1.5;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 980px;
+            margin: 2.5rem auto;
+            padding: 0 1.25rem;
         }
 
         .main-card {
-            background: var(--white);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 20px;
+            border: 2px solid #f4a261;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(156, 102, 68, 0.18);
         }
 
         .card-header {
-            background: var(--cream);
+            background: linear-gradient(90deg, #f4a261, #e76f51);
             padding: 1.5rem 2rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: none;
         }
 
         .page-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            color: var(--yellow);
+            color: #fffaf3;
             margin: 0;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.7rem;
+        }
+
+        .page-title i {
+            font-size: 1.7rem;
         }
 
         .card-body {
             padding: 2rem;
+            background-color: #fffdf8;
         }
 
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--dark-text);
+            color: #9c6644;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
+        .section-title i {
+            color: #e76f51;
+        }
+
         .form-row {
             display: grid;
-            grid-template-columns: 1fr auto auto;
+            grid-template-columns: 1.4fr auto auto;
             gap: 1rem;
             align-items: end;
             margin-bottom: 2rem;
             padding: 1.5rem;
-            background: var(--light-gray);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            background: #fff7f0;
+            border-radius: 16px;
+            border: 1px solid rgba(244, 162, 97, 0.6);
         }
 
         .form-group {
@@ -91,145 +89,147 @@
 
         .form-label {
             font-weight: 500;
-            color: var(--gray-text);
+            color: #6d6875;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             padding: 0.75rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border: 1.5px solid #f4a261;
+            border-radius: 10px;
             font-size: 1rem;
-            background: var(--white);
-            color: var(--dark-text);
-            transition: border-color 0.2s ease;
+            background: #ffffff;
+            color: #1f2937;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            border-color: #e76f51;
+            box-shadow: 0 0 0 0.15rem rgba(231, 111, 81, 0.25);
+        }
+
+        #cantidadInput {
+            width: 90px;
         }
 
         .btn-add {
-            background: var(--yellow);
-            color: var(--dark-text);
+            background: linear-gradient(45deg, #f4a261, #e76f51);
+            color: #fffaf3;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            padding: 0.8rem 1.6rem;
+            border-radius: 20px;
             font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.2s ease;
-            display: flex;
+            transition: all 0.2s ease;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(231, 111, 81, 0.4);
+            white-space: nowrap;
         }
 
         .btn-add:hover {
-            background: #f59e0b;
+            filter: brightness(1.05);
+            box-shadow: 0 6px 18px rgba(231, 111, 81, 0.6);
+            color: #ffffff;
         }
 
         .products-section {
             margin-top: 2rem;
         }
 
+        /* Tabla del carrito */
+        .table-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(244, 162, 97, 0.4);
+            background-color: #fffdf8;
+            margin-top: 1rem;
+        }
+
         .products-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
+        }
+
+        .products-table thead {
+            background: linear-gradient(90deg, #f4a261, #e76f51);
+            color: #fffaf3;
         }
 
         .products-table th {
-            background: var(--light-gray);
-            padding: 1rem;
+            padding: 0.9rem 1rem;
             text-align: left;
             font-weight: 600;
-            color: var(--dark-text);
-            border-bottom: 1px solid var(--border-color);
             font-size: 0.9rem;
+            border-bottom: none;
         }
 
         .products-table td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--dark-text);
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #f3e1d0;
+            color: #1f2937;
+        }
+
+        .products-table tr:last-child td {
+            border-bottom: none;
         }
 
         .products-table tr:hover {
-            background: var(--light-cream);
+            background: #fff1e6;
+        }
+
+        .cart-item {
+            background: #ffffff;
         }
 
         .btn-remove {
-            background: var(--yellow);
-            color: var(--dark-text);
+            background-color: #ffb703;
+            color: #ffffff;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
             font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .btn-remove:hover {
-            background: #f59e0b;
+            filter: brightness(1.05);
         }
 
         .total-section {
             text-align: right;
-            margin-bottom: 2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .total-amount {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--dark-text);
-            margin-bottom: 1.5rem;
+            color: #9c6644;
+            margin-bottom: 1.2rem;
         }
 
         .action-buttons {
             display: flex;
             gap: 1rem;
             justify-content: flex-end;
-        }
-
-        .btn-clear {
-            background: var(--red);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .btn-clear:hover {
-            background: #dc2626;
-        }
-
-        .btn-process {
-            background: var(--green);
-            color: var(--white);
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-process:hover {
-            background: #059669;
         }
 
         .btn-back {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            background-color: #fff7f0;
+            color: #9c6644;
+            border: 2px solid #f4a261;
+            padding: 0.7rem 1.5rem;
+            border-radius: 20px;
             font-weight: 500;
             text-decoration: none;
             display: inline-flex;
@@ -239,21 +239,79 @@
         }
 
         .btn-back:hover {
-            background: #bfdbfe;
+            background-color: #f4a261;
             text-decoration: none;
-            color: var(--primary-blue);
+            color: #fffaf3;
+        }
+
+        .btn-clear {
+            background: #e63946;
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-clear:hover {
+            background: #c52833;
+        }
+
+        .btn-process {
+            background: #52b788;
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(82, 183, 136, 0.4);
+        }
+
+        .btn-process:hover {
+            background: #40916c;
+        }
+
+        .btn-back-header {
+            background-color: #fff7f0;
+            color: #9c6644;
+            border: 2px solid #f4a261;
+            padding: 0.55rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-back-header:hover {
+            background-color: #f4a261;
+            color: #fffaf3;
+            text-decoration: none;
         }
 
         .empty-cart {
             text-align: center;
             padding: 3rem 2rem;
-            color: var(--gray-text);
+            color: #6d6875;
+            background-color: #fff7f0;
+            border-radius: 16px;
+            border: 1px dashed rgba(244, 162, 97, 0.7);
+            margin-top: 0.5rem;
         }
 
         .empty-cart i {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--border-color);
+            color: #f4a261;
         }
 
         /* Responsive */
@@ -261,6 +319,10 @@
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+
+            #cantidadInput {
+                width: 100%;
             }
 
             .products-table {
@@ -279,27 +341,29 @@
 
             .btn-back {
                 margin-right: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 0.5rem;
+                justify-content: center;
             }
-        }
 
-        .product-item {
-            display: none;
-        }
-
-        .cart-item {
-            background: var(--white);
+            .btn-clear,
+            .btn-process {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="main-card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h1 class="page-title">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-cash-register"></i>
                 Simular Venta
             </h1>
+
+            <a href="/principal" class="btn-back-header">
+                <i class="fas fa-home me-1"></i> Menú Principal
+            </a>
         </div>
 
         <div class="card-body">
@@ -323,7 +387,7 @@
 
                 <div class="form-group">
                     <label class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidadInput" value="1" min="1" style="width: 80px;">
+                    <input type="number" class="form-control" id="cantidadInput" value="1" min="1">
                 </div>
 
                 <button type="button" class="btn-add" onclick="agregarAlCarrito()">
@@ -335,7 +399,7 @@
             <div class="products-section">
                 <div class="section-title">
                     <i class="fas fa-shopping-basket"></i>
-                    Productos en el Carrito:
+                    Productos en el Carrito
                 </div>
 
                 <div id="cartContainer">
@@ -346,19 +410,21 @@
                     </div>
                 </div>
 
-                <table class="products-table" id="cartTable" style="display: none;">
-                    <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Subtotal</th>
-                        <th>Acción</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cartItems">
-                    </tbody>
-                </table>
+                <div class="table-wrapper" id="cartTableWrapper" style="display: none;">
+                    <table class="products-table" id="cartTable">
+                        <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th style="width: 12%;">Cantidad</th>
+                            <th style="width: 18%;">Precio Unitario</th>
+                            <th style="width: 18%;">Subtotal</th>
+                            <th style="width: 14%;">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody id="cartItems">
+                        </tbody>
+                    </table>
+                </div>
 
                 <div class="total-section" id="totalSection" style="display: none;">
                     <div class="total-amount">
@@ -385,6 +451,7 @@
     </div>
 </div>
 
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     let carrito = [];
@@ -452,20 +519,20 @@
 
     function actualizarCarrito() {
         const cartContainer = document.getElementById('cartContainer');
-        const cartTable = document.getElementById('cartTable');
+        const cartTableWrapper = document.getElementById('cartTableWrapper');
         const cartItems = document.getElementById('cartItems');
         const totalSection = document.getElementById('totalSection');
         const totalAmount = document.getElementById('totalAmount');
 
         if (carrito.length === 0) {
             cartContainer.style.display = 'block';
-            cartTable.style.display = 'none';
+            cartTableWrapper.style.display = 'none';
             totalSection.style.display = 'none';
             return;
         }
 
         cartContainer.style.display = 'none';
-        cartTable.style.display = 'table';
+        cartTableWrapper.style.display = 'block';
         totalSection.style.display = 'block';
 
         // Limpiar tabla
@@ -475,6 +542,7 @@
         let total = 0;
         carrito.forEach(item => {
             const row = document.createElement('tr');
+            row.classList.add('cart-item');
             row.innerHTML = `
                 <td>${item.nombre}</td>
                 <td>${item.cantidad}</td>
@@ -519,10 +587,7 @@
 
         if (confirmacion) {
             // Procesar cada item del carrito
-            let ventasCompletas = 0;
-
             carrito.forEach(item => {
-                // Crear formulario para cada venta
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = '/ventas/realizar';

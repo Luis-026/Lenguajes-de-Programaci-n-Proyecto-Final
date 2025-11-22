@@ -2,43 +2,304 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Roles</title>
+    <title>Gestión de Roles - Panadería</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffe5d9 0%, #fff1e6 40%, #fde2e4 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page-wrapper {
+            margin-top: 50px;
+        }
+
+        .card-roles {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 2px solid #f4a261;
+            box-shadow: 0 10px 30px rgba(156, 102, 68, 0.18);
+            padding: 25px 25px 15px 25px;
+        }
+
+        .page-title {
+            color: #9c6644;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-subtitle {
+            color: #6d6875;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back {
+            border-radius: 20px;
+            border: 2px solid #f4a261;
+            color: #9c6644;
+            background-color: #fff7f0;
+            font-weight: 500;
+        }
+
+        .btn-back:hover {
+            background-color: #f4a261;
+            color: #fffaf3;
+        }
+
+        .btn-nuevo {
+            background: linear-gradient(45deg, #f4a261, #e76f51);
+            border: none;
+            border-radius: 20px;
+            padding: 0.45rem 1.4rem;
+            font-weight: 500;
+            color: #fffaf3;
+            box-shadow: 0 4px 12px rgba(231, 111, 81, 0.4);
+        }
+
+        .btn-nuevo:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 6px 18px rgba(231, 111, 81, 0.6);
+            color: #ffffff;
+        }
+
+        /* Tabla */
+        .table-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(244, 162, 97, 0.4);
+            background-color: #fffdf8;
+        }
+
+        table {
+            margin-bottom: 0;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #f4a261, #e76f51);
+            color: #fffaf3;
+        }
+
+        thead th {
+            border-bottom: none !important;
+            font-weight: 600;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #fff1e6;
+            transform: translateY(-1px);
+        }
+
+        tbody td {
+            vertical-align: middle;
+        }
+
+        /* Estado */
+        .badge-estado-activo {
+            background-color: #52b788;
+            color: #ffffff;
+            border-radius: 999px;
+            padding: 0.25rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-estado-inactivo {
+            background-color: #e63946;
+            color: #ffffff;
+            border-radius: 999px;
+            padding: 0.25rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Botones acciones */
+        .btn-accion {
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+            margin-right: 4px;
+        }
+
+        .btn-accion i {
+            font-size: 0.9rem;
+        }
+
+        .btn-activar {
+            background-color: #52b788;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-activar:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-anular {
+            background-color: #ffb703;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-anular:hover {
+            filter: brightness(1.05);
+        }
+
+        .btn-eliminar {
+            background-color: #e63946;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-eliminar:hover {
+            filter: brightness(1.05);
+        }
+
+        .btn-permisos {
+            background-color: #6c757d;
+            border: none;
+            color: #ffffff;
+        }
+
+        .btn-permisos:hover {
+            filter: brightness(1.05);
+        }
+
+        /* Modal */
+        .modal-header {
+            background: linear-gradient(90deg, #f4a261, #e76f51);
+            color: #fffaf3;
+            border-bottom: none;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
+        .form-label {
+            color: #9c6644;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1.5px solid #f4a261;
+            background-color: #fffdf8;
+        }
+
+        .form-control:focus {
+            border-color: #e76f51;
+            box-shadow: 0 0 0 0.15rem rgba(231, 111, 81, 0.25);
+        }
+
+        .btn-guardar {
+            background: linear-gradient(45deg, #f4a261, #e76f51);
+            border: none;
+            border-radius: 12px;
+            font-weight: 500;
+            color: #fffaf3;
+        }
+
+        .btn-guardar:hover {
+            filter: brightness(1.05);
+            color: #ffffff;
+        }
+
+        .btn-cancelar {
+            border-radius: 12px;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-    <h3 class="mb-4">Gestión de Roles</h3>
+<div class="container page-wrapper">
+    <div class="card-roles">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h3 class="page-title">
+                    <i class="bi bi-shield-lock-fill me-2"></i>
+                    Gestión de Roles
+                </h3>
+                <p class="page-subtitle">
+                    Administra los roles de los usuarios.
+                </p>
+            </div>
+            <div class="text-end">
+                <a href="/principal" class="btn btn-back mb-2">
+                    <i class="bi bi-arrow-left-circle me-1"></i>
+                    Volver al Menú Principal
+                </a><br>
+                <button class="btn btn-nuevo" data-bs-toggle="modal" data-bs-target="#modalRol">
+                    <i class="bi bi-plus-circle-fill me-1"></i>
+                    Agregar un nuevo rol
+                </button>
+            </div>
+        </div>
 
-    <a href="/principal" class="btn btn-outline-primary mb-3">← Volver al Menú Principal</a>
-    <button class="btn btn-success mb-3 ms-2" data-bs-toggle="modal" data-bs-target="#modalRol">Nuevo Rol</button>
+        <!-- Tabla -->
+        <div class="table-wrapper">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th style="width: 10%;">ID</th>
+                    <th>Nombre</th>
+                    <th style="width: 15%;">Estado</th>
+                    <th style="width: 40%;">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="r : ${roles}">
+                    <td th:text="${r.id}"></td>
+                    <td th:text="${r.nombre}"></td>
+                    <td>
+                        <span th:text="${r.activo ? 'Activo' : 'Inactivo'}"
+                              th:classappend="${r.activo ? 'badge-estado-activo' : 'badge-estado-inactivo'}">
+                        </span>
+                    </td>
+                    <td>
+                        <!-- Activar -->
+                        <a th:href="@{/roles/activar/{id}(id=${r.id})}"
+                           class="btn btn-sm btn-accion btn-activar">
+                            <i class="bi bi-check-circle me-1"></i>Activar
+                        </a>
 
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="r : ${roles}">
-            <td th:text="${r.id}"></td>
-            <td th:text="${r.nombre}"></td>
-            <td>
-                <span th:text="${r.activo ? 'Activo' : 'Inactivo'}"
-                      th:classappend="${r.activo ? 'text-success' : 'text-danger'}"></span>
-            </td>
-            <td>
-                <a th:href="@{/roles/activar/{id}(id=${r.id})}" class="btn btn-sm btn-success">Activar</a>
-                <a th:href="@{/roles/anular/{id}(id=${r.id})}" class="btn btn-sm btn-warning">Anular</a>
-                <a th:href="@{/roles/eliminar/{id}(id=${r.id})}" class="btn btn-sm btn-danger"
-                   onclick="return confirm('¿Eliminar rol?')">Eliminar</a>
-                <a th:href="@{/roles/permisos/{id}(id=${r.id})}" class="btn btn-sm btn-secondary">Permisos</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                        <!-- Anular -->
+                        <a th:href="@{/roles/anular/{id}(id=${r.id})}"
+                           class="btn btn-sm btn-accion btn-anular">
+                            <i class="bi bi-slash-circle me-1"></i>Anular
+                        </a>
+
+                        <!-- Eliminar -->
+                        <a th:href="@{/roles/eliminar/{id}(id=${r.id})}"
+                           class="btn btn-sm btn-accion btn-eliminar"
+                           onclick="return confirm('¿Eliminar rol?')">
+                            <i class="bi bi-trash3-fill me-1"></i>Eliminar
+                        </a>
+
+                        <!-- Permisos -->
+                        <a th:href="@{/roles/permisos/{id}(id=${r.id})}"
+                           class="btn btn-sm btn-accion btn-permisos">
+                            <i class="bi bi-key-fill me-1"></i>Permisos
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!-- Modal para nuevo rol -->
@@ -47,28 +308,35 @@
         <div class="modal-content">
             <form method="post" action="/roles/guardar">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Nuevo Rol</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="modalLabel">
+                        <i class="bi bi-shield-plus me-2"></i>Nuevo Rol
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Nombre del rol</label>
-                        <input type="text" name="nombre" class="form-control" required>
+                        <label class="form-label" for="nombre">Nombre del rol</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" required>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" name="activo" class="form-check-input" checked>
-                        <label class="form-check-label">Activo</label>
+                        <input type="checkbox" name="activo" id="activo" class="form-check-input" checked>
+                        <label class="form-check-label" for="activo">Activo</label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-guardar">
+                        <i class="bi bi-save2 me-1"></i>Guardar
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-cancelar" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
