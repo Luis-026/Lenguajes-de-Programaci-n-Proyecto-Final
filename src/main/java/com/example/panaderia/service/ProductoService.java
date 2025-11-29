@@ -46,4 +46,20 @@ public class ProductoService {
             productoRepository.save(p);
         });
     }
+
+    // ⭐ Nuevo: Total general de stock
+    public int totalStock() {
+        return productoRepository.findAll()
+                .stream()
+                .mapToInt(Producto::getStock)
+                .sum();
+    }
+
+    // ⭐ Nuevo: Productos con bajo stock (< 10)
+    public long productosBajoStock() {
+        return productoRepository.findAll()
+                .stream()
+                .filter(p -> p.getStock() < 10)
+                .count();
+    }
 }
