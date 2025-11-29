@@ -46,4 +46,9 @@ public class RolService {
     public Rol buscarPorId(Long id) {
         return rolRepository.findById(id).orElse(null);
     }
+
+    public Rol buscarPorNombre(String nombre) {
+        return rolRepository.findByNombre(nombre).orElse(null);
+    }
+
 }

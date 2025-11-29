@@ -2,6 +2,8 @@ package com.example.panaderia.controller;
 
 import com.example.panaderia.entity.Usuario;
 import com.example.panaderia.service.UsuarioService;
+import com.example.panaderia.service.RolService;   // 👈 IMPORTANTE
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,21 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    // 👇 NUEVO: inyectamos el servicio de roles
+    @Autowired
+    private RolService rolService;
+
     @GetMapping
     public String listarUsuarios(Model model) {
         List<Usuario> lista = usuarioService.listarTodos();
         model.addAttribute("usuarios", lista);
+
+        // 👇 NUEVO: enviar lista de roles para el <select> dinámico
+        model.addAttribute("roles", rolService.listarTodos());
+
         return "usuarios";
     }
+
     @PostMapping("/guardar")
     public String guardar(@RequestParam(value = "id", required = false) Long id,
                           @RequestParam("usuario") String usuario,
@@ -49,8 +60,6 @@ public class UsuarioController {
         usuarioService.guardar(u);
         return "redirect:/usuarios";
     }
-
-
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {

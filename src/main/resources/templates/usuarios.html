@@ -334,9 +334,10 @@
                         <label class="form-label" for="rol">Rol</label>
                         <select name="rol" id="rol" class="form-select" required>
                             <option value="">Seleccione un rol</option>
-                            <option value="ADMINISTRADOR">Administrador</option>
-                            <option value="ALMACENERO">Almacenero</option>
-                            <option value="VENDEDOR">Vendedor</option>
+                            <option th:each="r : ${roles}"
+                                    th:value="${r.nombre}"
+                                    th:text="${r.nombre}">
+                            </option>
                         </select>
                     </div>
 
