@@ -24,6 +24,26 @@ public class VentaService {
         return ventaRepository.findAll();
     }
 
+    public List<Venta> listarUltimasVentas() {
+        return ventaRepository.findTop10ByOrderByFechaDesc();
+    }
+
+    public double obtenerTotalMontoVentas() {
+        return ventaRepository.totalMontoVentas();
+    }
+
+    public long obtenerTotalComprobantes() {
+        return ventaRepository.totalComprobantes();
+    }
+
+    public long obtenerTotalProductosVendidos() {
+        return ventaRepository.totalProductosVendidos();
+    }
+
+    public List<Object[]> obtenerProductosMasVendidos() {
+        return ventaRepository.productosMasVendidos();
+    }
+
     public void realizarVenta(Long productoId, int cantidad) {
         Producto producto = productoRepository.findById(productoId).orElseThrow();
 
@@ -31,11 +51,9 @@ public class VentaService {
             throw new RuntimeException("Stock insuficiente");
         }
 
-        // Descontar stock
         producto.setStock(producto.getStock() - cantidad);
         productoRepository.save(producto);
 
-        // Registrar venta
         Venta venta = new Venta();
         venta.setProducto(producto);
         venta.setCantidad(cantidad);
@@ -44,5 +62,4 @@ public class VentaService {
 
         ventaRepository.save(venta);
     }
-
 }
