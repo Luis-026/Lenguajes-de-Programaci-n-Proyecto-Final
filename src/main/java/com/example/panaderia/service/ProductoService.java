@@ -47,7 +47,6 @@ public class ProductoService {
         });
     }
 
-    // ⭐ Nuevo: Total general de stock
     public int totalStock() {
         return productoRepository.findAll()
                 .stream()
@@ -55,7 +54,6 @@ public class ProductoService {
                 .sum();
     }
 
-    // ⭐ Nuevo: Productos con bajo stock (< 10)
     public long productosBajoStock() {
         return productoRepository.findAll()
                 .stream()
