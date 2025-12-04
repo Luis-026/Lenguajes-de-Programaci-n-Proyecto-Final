@@ -18,7 +18,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // 👇 NUEVO: inyectamos el servicio de roles
     @Autowired
     private RolService rolService;
 
@@ -26,8 +25,6 @@ public class UsuarioController {
     public String listarUsuarios(Model model) {
         List<Usuario> lista = usuarioService.listarTodos();
         model.addAttribute("usuarios", lista);
-
-        // 👇 NUEVO: enviar lista de roles para el <select> dinámico
         model.addAttribute("roles", rolService.listarTodos());
 
         return "usuarios";
